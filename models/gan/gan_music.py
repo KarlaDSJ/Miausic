@@ -1,7 +1,6 @@
-from music21 import note, chord, stream
+from music21 import note, chord, stream, instrument
 from tensorflow.keras.models import load_model
 import numpy as np
-
 
 def get_note(note_c, instr):
     """Regresa una nota"""
@@ -10,7 +9,7 @@ def get_note(note_c, instr):
     return new_note
 
 def get_chord(pattern, offset, instr):
-    """REgresa un arcorde"""
+    """Regresa un arcorde"""
     notes_in_chord = pattern.split(' ')
     notes = []
     for current_note in notes_in_chord:
@@ -18,7 +17,7 @@ def get_chord(pattern, offset, instr):
     new_chord = chord.Chord(notes)
     new_chord.offset = offset
 
-def get_music(model, dataset, length=500):
+def get_music(model, dataset, length=100):
     """Generamos una pista"""
     latent_dim=100
     n_vocab = len(set(dataset))
@@ -33,7 +32,7 @@ def get_music(model, dataset, length=500):
     
     return pred_notes_mapped[:length]  
 
-def create_midi(pred_notes_mapped, instr):
+def create_midi(pred_notes_mapped, instr=instrument.Violin()):
     """Convertimos una pista a midi"""
     offset = 0
     output_notes = []
@@ -51,6 +50,6 @@ def create_midi(pred_notes_mapped, instr):
 
         #Para que no se empalmen
         offset += 0.5
-
+        
     return stream.Stream(output_notes)
    
