@@ -45,8 +45,8 @@ def evaluar_armonia(secuencia, clave):
     return all(funcion != [] for funcion in funciones)
 
 # Algoritmo Genético
-def algoritmo_genetico(num_generaciones, tam_poblacion, escala):
-    notas_posibles = scales.Major(escala).ascending()
+def algoritmo_genetico(num_generaciones, tam_poblacion, escala, nota):
+    notas_posibles = escala.ascending()
     poblacion = [generar_acorde_aleatorio(notas_posibles) for _ in range(tam_poblacion)]
 
     for _ in range(num_generaciones):
@@ -54,7 +54,7 @@ def algoritmo_genetico(num_generaciones, tam_poblacion, escala):
         seleccionados = seleccionar_mejores(poblacion, notas_posibles, tam_poblacion // 2)
 
         # Evaluación de la armonía
-        seleccionados = [acorde for acorde in seleccionados if evaluar_armonia(acorde, escala)]
+        seleccionados = [acorde for acorde in seleccionados if evaluar_armonia(acorde, nota)]
 
         # Cruce
         descendencia = []

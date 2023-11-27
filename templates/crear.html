@@ -60,7 +60,7 @@
                       <label for="instrumento">Intrumento</label>
                       <select class="form-control" id="instrumento" name="instrumento">
                         <option value="piano">Piano</option>
-                        <option value="guitarra">Guitarra</option>
+                        <!-- <option value="guitarra">Guitarra</option> -->
                         <option value="violin">Violín</option>
                       </select>
                     </div>
@@ -96,13 +96,13 @@
                     <div class="form-group mt-2">
                       <label for="compas">Compás</label>
                       <select class="form-control" id="compas" name="compas">
-                        <option value="4.4">4/4</option>
-                        <option value="3.4">3/4</option>
-                        <option value="2.4">2/4</option>
-                        <option value="3.8">3/8</option>
-                        <option value="6.8">6/8</option>
-                        <option value="9.8">9/8</option>
-                        <option value="12.8">12/8</option>
+                        <option value="4/4">4/4</option>
+                        <option value="3/4">3/4</option>
+                        <option value="2/4">2/4</option>
+                        <option value="3/8">3/8</option>
+                        <option value="6/8">6/8</option>
+                        <option value="9/8">9/8</option>
+                        <option value="12/8">12/8</option>
                       </select>
                     </div>
                     <div class="form-group mt-2">
@@ -121,6 +121,10 @@
                         <option value="177">Presto - extremadamente rápido 177 BPM</option>
                         <option value="178">Prestissimo - incluso más rápido que Presto 178</option>
                       </select>
+                    </div>
+                    <div class="form-group mt-2">
+                      <label for="duracion">Duración:</label><br>
+                      <input type="range" class="form-control-range" id="duracion" name="duracion" min="1" max="20">
                     </div>
                     <div class="d-flex flex-row-reverse">
                       <button type="submit" class="btn btn btn-dark mt-2">Crear</button>

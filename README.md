@@ -52,3 +52,7 @@ environment.set("musescoreDirectPNGPath", "/Applications/MuseScore 4.app/Content
 ```
 brew install fluid-synth
 ```
+
+- El archivo para generar reproducir la música:
+https://musical-artifacts.com/artifacts/433 (alguno similar)
+Descargarlo y ponerlo en la carpeta de static con el nombre Touhou.sf2
