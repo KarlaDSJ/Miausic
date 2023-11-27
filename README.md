@@ -32,3 +32,27 @@ set FLASK_APP=app.py
 set FLASK_ENV=development
 flask run
 ```
+
+
+## Requerimientos 
+
+Ess necesario tener instalado:
+- MuseScore (para generar la partitura) https://musescore.org/es 
+
+Configurar music21
+```
+music21.configure
+```
+Indicamos dónde se encuentra la app MuseScore (ejemplo en Mac)
+```
+environment.set("musescoreDirectPNGPath", "/Applications/MuseScore 4.app/Contents/MacOS/mscore")
+```
+
+- fluidsynth (para convertir de midi a mp3)
+```
+brew install fluid-synth
+```
+
+- El archivo para generar reproducir la música:
+https://musical-artifacts.com/artifacts/433 (alguno similar)
+Descargarlo y ponerlo en la carpeta de static con el nombre Touhou.sf2

@@ -1,1 +1,5 @@
 Flask==3.0.0
+music21==9.1.0
+pandas==2.1.3
+tensorflow==2.15.0
+mingus==0.6.1

@@ -52,50 +52,83 @@
             <div class="card-body">
               <h5 class="card-title">Restricciones</h5>
                 <form action="/submit" method="POST">
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="name"  name="name" placeholder="Email">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="inputPassword4">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                      </div>
+                   <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="gan" name="gan">
+                    <label class="form-check-label" for="gan">Génetico - GAN</label>
+                   </div>
+                    <div class="form-group mt-2">
+                      <label for="instrumento">Intrumento</label>
+                      <select class="form-control" id="instrumento" name="instrumento">
+                        <option value="piano">Piano</option>
+                        <!-- <option value="guitarra">Guitarra</option> -->
+                        <option value="violin">Violín</option>
+                      </select>
                     </div>
-                    <div class="form-group">
-                      <label for="inputAddress">Address</label>
-                      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                    <div class="form-group mt-2">
+                      <label for="nota">Nota</label>
+                      <select class="form-control" id="nota" name="nota">
+                        <option value="C">Do</option>
+                        <option value="D">Re</option>
+                        <option value="E">Mi</option>
+                        <option value="F">Fa</option>
+                        <option value="G">Sol</option>
+                        <option value="A">La</option>
+                        <option value="B">Si</option>
+                      </select>
                     </div>
-                    <div class="form-group">
-                      <label for="inputAddress2">Address 2</label>
-                      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+                    <div class="form-group mt-2">
+                      <label for="escalas">Escala</label>
+                      <select class="form-control" id="escalas" name="escalas">
+                        <option value="Ionian">Ascendentes - Ionian</option>
+                        <option value="Dorian">Ascendentes - Dorian</option>
+                        <option value="Phrygian">Ascendentes - Phrygian</option>
+                        <option value="Lydian">Ascendentes - Lydian</option>
+                        <option value="Mixolydian">Ascendentes - Mixolydian</option>
+                        <option value="Aeolian">Ascendentes - Aeolian</option>
+                        <option value="Locrian">Ascendentes - Locrian</option>
+                        <option value="Mayor">Mayor</option>
+                        <option value="Armonica mayor">Armonica mayor</option>
+                        <option value="Menor">Menor</option>
+                        <option value="Cromática">Cromática</option>
+                        <option value="Octatónico">Octatónico</option>
+                      </select>
                     </div>
-                    <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity">
-                      </div>
-                      <div class="form-group col-md-4">
-                        <label for="inputState">State</label>
-                        <select id="inputState" class="form-control">
-                          <option selected>Choose...</option>
-                          <option>...</option>
-                        </select>
-                      </div>
-                      <div class="form-group col-md-2">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip">
-                      </div>
+                    <div class="form-group mt-2">
+                      <label for="compas">Compás</label>
+                      <select class="form-control" id="compas" name="compas">
+                        <option value="4/4">4/4</option>
+                        <option value="3/4">3/4</option>
+                        <option value="2/4">2/4</option>
+                        <option value="3/8">3/8</option>
+                        <option value="6/8">6/8</option>
+                        <option value="9/8">9/8</option>
+                        <option value="12/8">12/8</option>
+                      </select>
                     </div>
-                    <div class="form-group">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                          Check me out
-                        </label>
-                      </div>
+                    <div class="form-group mt-2">
+                      <label for="beats">BPM</label>
+                      <select class="form-control" id="beats" name="beats">
+                        <option value="40">Grave - lento y solemne 40 BPM</option>
+                        <option value="45">Lento – lentamente 45 BPM</option>
+                        <option value="50">Largo - ampliamente 50 BPM</option>
+                        <option value="65">Adagio – lento y majestuoso 65 BPM</option>
+                        <option value="70">Adagietto – bastante lento 70 BPM</option>
+                        <option value="77">Andante – a paso 77 BPM</option>
+                        <option value="97">Moderato - moderadamente 97 BPM</option>
+                        <option value="109">Allegretto - moderadamente rápido 109 BPM</option>
+                        <option value="132" selected>Allegro - rápido, rápido y brillante 132 BPM</option>
+                        <option value="140">Vivace - animado y rápido 140 BPM</option>
+                        <option value="177">Presto - extremadamente rápido 177 BPM</option>
+                        <option value="178">Prestissimo - incluso más rápido que Presto 178</option>
+                      </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <div class="form-group mt-2">
+                      <label for="duracion">Duración:</label><br>
+                      <input type="range" class="form-control-range" id="duracion" name="duracion" min="1" max="20">
+                    </div>
+                    <div class="d-flex flex-row-reverse">
+                      <button type="submit" class="btn btn btn-dark mt-2">Crear</button>
+                    </div>
                   </form>
             </div>
           </div>
