@@ -86,7 +86,7 @@ class GAN():
         self.disc_loss.append(d_loss[0])
         self.gen_loss.append(g_loss)
         if epoch % 50 == 0:
-            filename = 'objects/generator_model.h5' % (epoch + 1)
+            filename = 'objects/generator_model.h5'
             self.g_model.save(filename)
 
     def prepare_sequences(self, notes, n_vocab):

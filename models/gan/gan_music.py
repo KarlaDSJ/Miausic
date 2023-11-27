@@ -1,7 +1,8 @@
-from music21 import note, chord, stream, instrument, meter, tempo
-import mingus.core.notes as notes
+from music21 import note, chord, stream, instrument, meter, tempo, duration
+import mingus.core.chords as chords
 from tensorflow.keras.models import load_model
 import numpy as np
+import random
 
 def get_note(note_c, instr):
     """Regresa una nota"""
@@ -9,26 +10,25 @@ def get_note(note_c, instr):
     new_note.storedInstrument = instr
     return new_note
 
-def get_chord(pattern, offset):
-    """Regresa un arcorde"""
-    notes_in_chord = pattern.split(' ')
-    new_chord = chord.Chord(notes_in_chord)
-    new_chord.offset = offset
+def change_scale(chord, escala):
+    notes = chord.split(' ')
+    aux = []
+    for i in notes[:len(notes)//2]:
+        if i not in escala:
+           aux += escala[random.randint(0,len(escala)-1)]
+        else:
+            aux += i
+    return ' '.join(aux + notes[len(notes)//2:])
 
 def get_music(model, dataset, escala, length=100):
     """Generamos una pista"""
     latent_dim=100
     n_vocab = len(set(dataset))
-    int_to_note = dict((number, note) for number, note in enumerate(set(dataset)))
-    note_to_int = dict((note, number) for number, note in enumerate(set(dataset)))
+    int_to_note = dict((number, change_scale(note,escala)) for number, note in enumerate(set(dataset)))
     generator_model = load_model(model)
     
-    #Generamos una pista empezando por una escala dada
-    escala = [notes.note_to_int(x) for x in escala]
-    j = []
-    for _ in range(latent_dim//8+1):
-        j += escala 
-    predictions = generator_model.predict(np.array(j[:latent_dim]).reshape((1, latent_dim)))
+    #Generamos una pista empezando por una alearoria
+    predictions = generator_model.predict(np.random.normal(0, 1, (1, latent_dim)))
     #Creamos el diccionario para saber el nombre de los acordes
     pred_notes = [x * (n_vocab / 2) + (n_vocab / 2) for x in predictions[0]]
     pred_notes_mapped = [int_to_note[int(x[0])] for x in pred_notes]
@@ -47,7 +47,12 @@ def create_midi(pred_notes_mapped, compas, bpm, instr=instrument.Violin()):
         pattern = item
         # pattern is a chord
         if ' ' in pattern:
-            output_notes.append(chord.Chord(item.split()))
+            #new_chord = chords.major_triad(random.choice(item.split()))
+            #print(new_chord)
+            p = pattern.split()
+            m = chord.Chord(p[:len(p)//2])
+            m.simplifyEnharmonics(inPlace=True)
+            output_notes.append(m)
         # pattern is a note
         else:
             output_notes.append(get_note(pattern, instr))

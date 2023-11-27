@@ -54,6 +54,7 @@ def create_music(escala, nota, beat, instrumento, compas, duracion):
     # Salida a un archivo MIDI
     midi_file_out.write_Composition("static/results/res.mid", composicion, beat)
     # Guardamos los archivos y decidimos el intrumento a utilizar
+    change_instrument(instrumento)
     
 
 
